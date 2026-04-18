@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+<h1>Product Details</h1>
+</div>
+
+<div class="product-page">
+
+<img id="img1">
+<img id="img2">
+
+<h2 id="name"></h2>
+<p id="desc"></p>
+<h2 id="price"></h2>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+<p>📞 03338181082</p>
+
+</div>
+
+<script>
+
+let id = localStorage.getItem("product");
+
+/* ALL PRODUCTS DATABASE */
+let products = {
+
+frames:{name:"Frames",price:1599,desc:"Premium photo frThese frames are magical! Watch them change and transform your space in an instant.ames"},
+mirrorframes:{name:"Mirror Frames",price:2000,desc:"Beautiful mirror frames that add elegance and style to any room. Perfect for your home or office!"},
+magicmirror:{name:"Magic Mirror Frames",price:2000,desc:"These frames are magical! Watch them change and transform your space in an instant.or frames"},
+
+whitemug:{name:"White Mug",price:799,desc:"Classic, simple, and perfect for any drink. Enjoy your coffee or tea in a clean, white mug every dayug"},
+colourmug:{name:"Colour Mug",price:1099,desc:"Add some color to your day with our vibrant, colorful mugs. Perfect for every mood!"},
+heartmug:{name:"Heart Mug",price:1199,desc:"Show your love with a heart-shaped handle mug. A cute way to enjoy your favorite drink! mug"},
+magicmug:{name:"Magic Mug",price:1199,desc:"A mug that changes! Watch your design appear when you pour in your hot drink. It's magic!l mug"},
+
+shirtwhite:{name:"White Shirt",price:799,desc:"A crisp white shirt is a must-have for any wardrobe. Comfortable, stylish, and always in fashion!"},
+shirtcolour:{name:"Colour Shirt",price:1499,desc:"Stand out with our bright, colorful shirts. Perfect for any occasion and full of personality!"},
+
+flyers:{name:"Flyers (100)",price:699,desc:"Get your message across with high-quality flyers. Print and share your brand or event with ease."},
+visitingcards:{name:"Visiting Cards (50)",price:1999,desc:"Make a great first impression with our premium visiting cards. Perfect for professionals!"},
+
+canvas:{name:"Canvas Print",price:1399,desc:"Turn your favorite photos into beautiful works of art with our canvas prints. Perfect for any wall!"},
+framedcanvas:{name:"Framed Canvas",price:1599,desc:"A framed canvas print that adds charm to any room. Display your memories in style!"},
+
+lunchbox:{name:"Lunch Box",price:699,desc:"Pack your lunch in style with our practical and stylish lunch boxes. Ideal for work or school!"},
+bottle:{name:"Water Bottle",price:899,desc:"Stay hydrated with our durable and easy-to-carry water bottles. Perfect for on-the-go!"},
+tempbottle:{name:"Temperature Bottle",price:1499,desc:"Keep your drinks hot or cold for hours with our temperature-controlled water bottles. Perfect for long days! It comes with a Temperature Display."},
+
+wallet:{name:"Wallet",price:1299,desc:"Leather wallet! Sleek, stylish wallets that keep your cards and cash organized. A must-have accessory for any man or woman!"},
+keyring:{name:"Keyring",price:499,desc:"Custom keyring! Add a personal touch to your keys with our unique keyrings. Fun and stylish!"},
+chain:{name:"Chain",price:499,desc:"Stylish chain! Add a little sparkle to your style with our simple, elegant chains. Perfect for any look!"},
+ring:{name:"Ring",price:245,desc:"Beautiful, affordable rings that will complement your style. A little sparkle for your fingers!"},
+
+album:{name:"Album",price:999,desc:"Keep your precious memories safe in our classic photo albums. Perfect for photos, tickets, and keepsakes!"},
+printedalbum:{name:"Printed Album",price:9999,desc:"Create a custom printed album filled with your favorite photos. A great way to preserve memories forever!"},
+
+cushion:{name:"Cushion",price:749,desc:"Soft, comfortable cushions that add coziness and style to your home. Perfect for any couch or chair!"},
+magiccushion:{name:"Magic Cushion",price:999,desc:"Cushions that change with the touch of a button! Add a little magic and fun to your living room."}
+};
+
+let p = products[id];
+
+/* SAFETY */
+if(!p){
+document.body.innerHTML="<h2 style='text-align:center;color:red;margin-top:50px'>Product Not Found</h2>";
+throw new Error("Invalid product");
+}
+
+document.getElementById("name").innerText=p.name;
+document.getElementById("desc").innerText=p.desc;
+document.getElementById("price").innerText="Rs "+p.price;
+
+/* IMAGE SYSTEM (IMPORTANT FIX) */
+document.getElementById("img1").src="images/"+id+"1.jpg";
+document.getElementById("img2").src="images/"+id+"2.jpg";
+
+/* CART */
+function addToCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+name:p.name,
+price:p.price
+});
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("Added to cart");
+}
+
+</script>
+
+</body>
+</html>
